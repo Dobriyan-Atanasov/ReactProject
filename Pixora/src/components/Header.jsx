@@ -1,10 +1,27 @@
+import { useEffect, useState } from "react"
+import { Link, NavLink } from 'react-router'
+
 export default function Header() {
+    const [menuOpen, setMenuOpen] = useState(false)
+    const [scrolled, setScrolled] = useState(false)
+
+    useEffect(() => {
+        const update = () => {
+            setScrolled(window.scrollY > 50)
+        }
+
+        update()
+        window.addEventListener("scroll", update, { passive: true })
+        return () => window.removeEventListener("scroll", update)
+    }, [])
+
+    const closeMenu = () => setMenuOpen(false)
     return (
         <>
             {/* Header Navigation */}
-            <header id="header">
+            <header id="header" className={scrolled ? "scrolled" : ""}>
                 <nav>
-                    <a href="#home" className="logo">
+                    <Link to="/" className="logo" onClick={closeMenu}>
                         <svg viewBox="0 0 48 24" xmlns="http://www.w3.org/2000/svg" aria-label="Pix">
                             <path
                                 fillRule="evenodd"
@@ -17,29 +34,29 @@ export default function Header() {
                             />
                         </svg>
                         Pixora
-                    </a>
-                    <ul className="nav-menu" id="navMenu">
+                    </Link>
+                    <ul className={`nav-menu${menuOpen ? " active" : ""}`} id="navMenu">
                         <li>
-                            <a href="#home">Home</a>
+                            <NavLink to="/" className={activeSection === "home" ? "active" : ""} onClick={closeMenu}>Home</NavLink>
                         </li>
                         <li>
-                            <a href="#portfolio">Portfolio</a>
+                            <NavLink to="/portfolio" onClick={closeMenu}>Portfolio</NavLink>
                         </li>
                         <li>
-                            <a href="#about">About</a>
+                            <NavLink to="/about" className={activeSection === "about" ? "active" : ""} onClick={closeMenu}>About</NavLink>
                         </li>
                         <li>
-                            <a href="#services">Services</a>
+                            <NavLink to="/services" className={activeSection === "services" ? "active" : ""} onClick={closeMenu}>Services</NavLink>
                         </li>
                         <li>
-                            <a href="#contact">Contact</a>
+                            <NavLink to="/contact" className={activeSection === "contact" ? "active" : ""} onClick={closeMenu}>Contact</NavLink>
                         </li>
                     </ul>
-                    <div className="menu-toggle" id="menuToggle">
+                    <button type="button" className={`menu-toggle${menuOpen ? " active" : ""}`} id="menuToggle" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(open => !open)}>
                         <span />
                         <span />
                         <span />
-                    </div>
+                    </button>
                 </nav>
             </header>
         </>
