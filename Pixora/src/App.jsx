@@ -8,17 +8,6 @@ import Services from "./components/Services"
 import Contact from "./components/Contact"
 import Footer from "./components/Footer"
 
-function HomePage() {
-  return (
-    <>
-      <Hero />
-      <Portfolio />
-      <About />
-      <Services />
-      <Contact />
-    </>
-  )
-}
 
 function App() {
   usePageEffects()
@@ -28,7 +17,7 @@ function App() {
       <Header />
 
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<Hero />} />
         <Route path="/portfolio" element={<Portfolio />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />

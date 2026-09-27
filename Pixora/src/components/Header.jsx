@@ -36,21 +36,11 @@ export default function Header() {
                         Pixora
                     </Link>
                     <ul className={`nav-menu${menuOpen ? " active" : ""}`} id="navMenu">
-                        <li>
-                            <NavLink to="/" className={activeSection === "home" ? "active" : ""} onClick={closeMenu}>Home</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/portfolio" onClick={closeMenu}>Portfolio</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/about" className={activeSection === "about" ? "active" : ""} onClick={closeMenu}>About</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/services" className={activeSection === "services" ? "active" : ""} onClick={closeMenu}>Services</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/contact" className={activeSection === "contact" ? "active" : ""} onClick={closeMenu}>Contact</NavLink>
-                        </li>
+                        <li><NavLink to="/" end onClick={closeMenu}>Home</NavLink></li>
+                        <li><NavLink to="/portfolio" onClick={closeMenu}>Portfolio</NavLink></li>
+                        <li><NavLink to="/about" onClick={closeMenu}>About</NavLink></li>
+                        <li><NavLink to="/services" onClick={closeMenu}>Services</NavLink></li>
+                        <li><NavLink to="/contact" onClick={closeMenu}>Contact</NavLink></li>
                     </ul>
                     <button type="button" className={`menu-toggle${menuOpen ? " active" : ""}`} id="menuToggle" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(open => !open)}>
                         <span />
