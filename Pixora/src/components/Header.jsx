@@ -1,9 +1,24 @@
 import { useEffect, useState } from "react"
-import { Link, NavLink } from 'react-router'
+import { Link, NavLink, useNavigate } from 'react-router'
+import { useAuth } from '../context/useAuth'
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
+    const { user, loading, logout } = useAuth()
+    const navigate = useNavigate()
+
+    async function handleLogout() {
+        try {
+            await logout()
+            closeMenu()
+            navigate('/')
+        } catch (error) {
+            console.error('Logout request failed:', error)
+            closeMenu()
+            navigate('/')
+        }
+    }
 
     useEffect(() => {
         const update = () => {
@@ -41,6 +56,33 @@ export default function Header() {
                         <li><NavLink to="/about" onClick={closeMenu}>About</NavLink></li>
                         <li><NavLink to="/services" onClick={closeMenu}>Services</NavLink></li>
                         <li><NavLink to="/contact" onClick={closeMenu}>Contact</NavLink></li>
+                        {!loading && (
+                            user ? (
+                                <>
+                                    <li>
+                                        <NavLink to="/profile" onClick={closeMenu}>Profile</NavLink>
+                                    </li>
+                                    <li>
+                                        <button
+                                            type="button"
+                                            className="logout-button"
+                                            onClick={handleLogout}
+                                        >
+                                            Logout
+                                        </button>
+                                    </li>
+                                </>
+                            ) : (
+                                <>
+                                    <li>
+                                        <NavLink to="/login" onClick={closeMenu}>Login</NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink to="/register" onClick={closeMenu}>Register</NavLink>
+                                    </li>
+                                </>
+                            )
+                        )}
                     </ul>
                     <button type="button" className={`menu-toggle${menuOpen ? " active" : ""}`} id="menuToggle" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={() => setMenuOpen(open => !open)}>
                         <span />
