@@ -1,3 +1,4 @@
+import { getImageUrl } from '../lib/imageUrl'
 export default function PhotoCard({ photo, index, style, onClick }) {
     return (
         <div
@@ -7,7 +8,7 @@ export default function PhotoCard({ photo, index, style, onClick }) {
             onClick={onClick}
         >
             <img
-                src={photo.image_url}
+                src={getImageUrl(photo.image_url)}
                 alt={photo.title}
                 className="portfolio-image"
             />

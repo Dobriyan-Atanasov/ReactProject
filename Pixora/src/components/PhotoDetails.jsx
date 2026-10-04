@@ -1,3 +1,4 @@
+import { getImageUrl } from '../lib/imageUrl'
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router'
 import {
@@ -150,7 +151,7 @@ export default function PhotoDetails() {
         content = (
             <article className="photo-details">
                 <div className="photo-details-image">
-                    <img src={photo.image_url} alt={photo.title} />
+                    <img src={getImageUrl(photo.image_url)} alt={photo.title} />
                 </div>
 
                 <div className="photo-details-info">

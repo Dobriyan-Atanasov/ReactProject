@@ -37,7 +37,7 @@ export default function About() {
       <div className="about-container reveal">
         <div className="about-image">
           <img
-            src="/images/templatemo-about-artist.jpg"
+            src={`${import.meta.env.BASE_URL}images/templatemo-about-artist.jpg`}
             alt="Photographer"
           />
         </div>
