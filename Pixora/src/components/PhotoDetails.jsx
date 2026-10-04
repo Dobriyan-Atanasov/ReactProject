@@ -73,7 +73,7 @@ export default function PhotoDetails() {
 
         navigate('/portfolio', {
             replace: true,
-            state: null,
+            state: { selectedPhotoId: id },
         })
     }
 

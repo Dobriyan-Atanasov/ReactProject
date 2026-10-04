@@ -12,6 +12,9 @@ export default function Portfolio() {
   const [currentIndex, setCurrentIndex] = useState(4)
   const [isPlaying, setIsPlaying] = useState(false)
   const navigate = useNavigate()
+  const location = useLocation()
+  const { id } = useParams()
+  const selectedPhotoId = id ?? location.state?.selectedPhotoId
   const [size, setSize] = useState(() => ({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -21,26 +24,42 @@ export default function Portfolio() {
   const totalItems = photos.length
   const selectedIndex = Math.min(currentIndex, Math.max(totalItems - 1, 0))
 
-  // Load the cards from Supabase.
+  // Load the cards from Supabase and select the opened photo.
   useEffect(() => {
     const controller = new AbortController()
+
+    setLoading(true)
+    setError('')
 
     getPhotos(controller.signal)
       .then(data => {
         if (!controller.signal.aborted) {
           setPhotos(data)
-          setCurrentIndex(Math.min(4, Math.max(data.length - 1, 0)))
+
+          const photoIndex = data.findIndex(
+            photo => String(photo.id) === String(selectedPhotoId)
+          )
+
+          setCurrentIndex(
+            photoIndex >= 0
+              ? photoIndex
+              : Math.min(4, Math.max(data.length - 1, 0))
+          )
         }
       })
       .catch(err => {
-        if (!controller.signal.aborted) setError(err.message)
+        if (!controller.signal.aborted) {
+          setError(err.message)
+        }
       })
       .finally(() => {
-        if (!controller.signal.aborted) setLoading(false)
+        if (!controller.signal.aborted) {
+          setLoading(false)
+        }
       })
 
     return () => controller.abort()
-  }, [])
+  }, [selectedPhotoId])
 
   const prev = useCallback(() => {
     if (!totalItems) return
