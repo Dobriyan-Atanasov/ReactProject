@@ -1665,3 +1665,56 @@ and spacing as Save Changes/Cancel. Delete keeps its red color. ```css .photo-de
 	text-transform: uppercase;
 	border-radius: 6px;
 }
+
+@media (max-width: 600px) {
+	.photo-dialog {
+		width: calc(100% - 20px);
+		max-height: calc(100dvh - 24px);
+		border-radius: 12px;
+	}
+
+	.photo-details {
+		border-radius: 12px;
+	}
+
+	.photo-details-image {
+		padding: 48px 10px 10px;
+	}
+
+	.photo-details-image img {
+		height: auto;
+		max-height: 35dvh;
+		object-fit: contain;
+	}
+
+	.photo-details-info {
+		padding: 20px 16px;
+	}
+
+	.photo-details-info h1 {
+		font-size: 24px;
+		line-height: 1.3;
+	}
+
+	.photo-details-description {
+		font-size: 14px;
+		line-height: 1.65;
+	}
+
+	.photo-author {
+		margin-top: 16px;
+	}
+
+	.photo-details-info .photo-actions {
+		gap: 10px;
+		margin-top: 20px;
+	}
+
+	.photo-details-info .photo-actions>.cta-button,
+	.photo-details-info .photo-actions>.photo-delete-button {
+		min-width: 0;
+		padding: 12px 8px;
+		font-size: 12px;
+		letter-spacing: 0;
+	}
+}
