@@ -172,8 +172,17 @@ nav {
 .menu-toggle {
 	display: none;
 	flex-direction: column;
-	cursor: pointer;
+	align-items: center;
+	justify-content: center;
+	width: 44px;
+	height: 44px;
+	padding: 0;
 	gap: 4px;
+	background: transparent;
+	border: none;
+	border-radius: 6px;
+	appearance: none;
+	cursor: pointer;
 }
 
 .menu-toggle span {
