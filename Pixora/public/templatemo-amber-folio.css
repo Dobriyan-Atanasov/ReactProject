@@ -26,6 +26,8 @@ https://templatemo.com/tm-615-amber-folio
 
 html {
 	scroll-behavior: smooth;
+	overflow-x: hidden;
+	overflow-x: clip;
 }
 
 body {
@@ -33,6 +35,7 @@ body {
 	background: var(--primary-dark);
 	color: var(--text-light);
 	overflow-x: hidden;
+	overflow-x: clip;
 	line-height: 1.6;
 }
 
@@ -395,6 +398,8 @@ nav {
 
 /* Portfolio Section with Coverflow */
 .portfolio-section {
+	width: 100%;
+	overflow: hidden;
 	padding: 100px 0;
 	position: relative;
 	background: var(--primary-dark);
@@ -1730,5 +1735,48 @@ and spacing as Save Changes/Cancel. Delete keeps its red color. ```css .photo-de
 		padding: 12px 8px;
 		font-size: 12px;
 		letter-spacing: 0;
+	}
+}
+
+@media (max-width: 768px) {
+	header nav {
+		padding: 0 20px;
+	}
+
+	.menu-toggle {
+		flex-shrink: 0;
+	}
+
+	.nav-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		right: 0;
+		width: auto;
+		max-height: calc(100dvh - 84px);
+		overflow-y: auto;
+		overflow-x: hidden;
+		transform: translateX(-110%);
+		visibility: hidden;
+		pointer-events: none;
+		transition:
+			transform 0.3s ease,
+			visibility 0s linear 0.3s;
+	}
+
+	.nav-menu.active {
+		left: 0;
+		transform: translateX(0);
+		visibility: visible;
+		pointer-events: auto;
+		transition-delay: 0s;
+	}
+
+	.nav-menu .logout-button {
+		width: 100%;
+	}
+
+	.coverflow-container {
+		touch-action: pan-y;
 	}
 }
