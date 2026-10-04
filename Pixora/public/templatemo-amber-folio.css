@@ -1319,3 +1319,296 @@ footer {
 		transform: translateY(0);
 	}
 }
+
+.photo-dialog {
+	position: fixed;
+	inset: 0;
+	margin: auto;
+	width: min(850px, calc(100vw - 32px));
+	max-width: none;
+	height: fit-content;
+	max-height: 90vh;
+	padding: 0;
+	overflow: auto;
+	color: var(--text-light);
+	background: var(--card-dark);
+	border: 1px solid rgba(243, 156, 18, 0.25);
+	border-radius: 16px;
+	box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+}
+
+.photo-dialog::backdrop {
+	background: rgba(0, 0, 0, 0.85);
+	backdrop-filter: blur(6px);
+}
+
+.photo-close {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	padding: 0;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.75);
+	color: white;
+	font-family: inherit;
+	font-size: 28px;
+	line-height: 1;
+	cursor: pointer;
+	transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.photo-close:hover {
+	color: var(--accent-color);
+	border-color: var(--accent-color);
+}
+
+.photo-close:focus-visible {
+	outline: 2px solid var(--accent-color);
+	outline-offset: 3px;
+}
+
+.photo-details {
+	display: grid;
+	grid-template-columns: 1fr;
+	overflow: hidden;
+	border-radius: 16px;
+	background: var(--card-dark);
+}
+
+.photo-details-image {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background: #080808;
+}
+
+.photo-details-image img {
+	display: block;
+	width: 100%;
+	height: 50vh;
+	object-fit: contain;
+}
+
+.photo-details-info {
+	min-width: 0;
+	padding: 28px 32px;
+	text-align: center;
+}
+
+.photo-details-info .portfolio-category {
+	margin-bottom: 10px;
+}
+
+.photo-details-info h1 {
+	margin-bottom: 14px;
+	font-size: clamp(24px, 4vw, 32px);
+	overflow-wrap: anywhere;
+}
+
+.photo-details-description {
+	max-width: 650px;
+	margin: 0 auto;
+	color: var(--text-gray);
+	line-height: 1.8;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+}
+
+.photo-author {
+	margin-top: 22px;
+	color: var(--text-gray);
+	font-size: 14px;
+}
+
+.photo-author strong {
+	color: var(--accent-color);
+}
+
+.photo-status {
+	min-height: 250px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 32px;
+	text-align: center;
+}
+
+.photo-details-page {
+	max-width: 1000px;
+	min-height: 100vh;
+	margin: 0 auto;
+	padding: 120px 24px 60px;
+}
+
+.photo-back {
+	display: inline-block;
+	margin-bottom: 24px;
+	color: var(--accent-color);
+	text-decoration: none;
+}
+
+.photo-back:hover {
+	text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+	.photo-dialog {
+		width: calc(100vw - 24px);
+		max-height: 92vh;
+	}
+
+	.photo-details-image {
+		padding: 12px;
+	}
+
+	.photo-details-image img {
+		height: 40vh;
+	}
+
+	.photo-details-info {
+		padding: 24px 20px;
+	}
+
+	.photo-details-page {
+		padding: 110px 16px 40px;
+	}
+}
+
+/* Add Photo button above the carousel */
+
+.portfolio-add {
+	margin-top: 24px;
+	text-align: center;
+}
+
+
+/* Create and Edit pages */
+
+.photo-form-page .auth-card {
+	width: min(100%, 640px);
+}
+
+.photo-form-intro {
+	margin-top: 12px;
+	color: var(--text-secondary, #aaa);
+	line-height: 1.7;
+}
+
+.photo-form-page .auth-form textarea {
+	display: block;
+	width: 100%;
+	min-height: 140px;
+	padding: 12px 14px;
+	resize: vertical;
+	font: inherit;
+	line-height: 1.6;
+	color: #fff;
+	background: #222;
+	border: 1px solid #444;
+	border-radius: 8px;
+}
+
+.photo-form-page .auth-form input:focus,
+.photo-form-page .auth-form textarea:focus {
+	outline: none;
+	border-color: var(--accent-color);
+}
+
+
+/* Shared photo action buttons */
+
+.photo-actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: 12px;
+	margin-top: 24px;
+}
+
+.photo-actions .cta-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 48px;
+	margin: 0;
+	border: none;
+	font-family: inherit;
+	line-height: 1.4;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.photo-secondary-button,
+.photo-delete-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 48px;
+	padding: 15px 28px;
+	border: 1px solid #555;
+	border-radius: 2px;
+	background: transparent;
+	color: #fff;
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1.4;
+	text-transform: uppercase;
+	text-decoration: none;
+	cursor: pointer;
+	transition:
+		background 0.3s ease,
+		border-color 0.3s ease,
+		color 0.3s ease;
+}
+
+.photo-secondary-button:hover {
+	border-color: var(--accent-color);
+	color: var(--accent-color);
+}
+
+.photo-delete-button {
+	border-color: #d65b5b;
+	color: #ff9090;
+}
+
+.photo-delete-button:hover {
+	background: #d65b5b;
+	color: #fff;
+}
+
+.photo-actions button:disabled,
+.photo-close:disabled {
+	opacity: 0.6;
+	cursor: wait;
+}
+
+.photo-form-page input:disabled,
+.photo-form-page textarea:disabled {
+	opacity: 0.7;
+}
+
+.photo-updated {
+	margin-top: 8px;
+	color: var(--text-secondary, #aaa);
+	font-size: 13px;
+}
+
+@media (max-width: 600px) {
+	.photo-actions {
+		flex-direction: column;
+	}
+
+	.photo-actions>* {
+		width: 100%;
+	}
+}
