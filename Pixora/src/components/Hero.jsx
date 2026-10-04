@@ -10,10 +10,10 @@ export default function Hero() {
         <div className="floating-accent accent-3" />
       </div>
       <div className="hero-content reveal">
-        <h1 className="hero-title">Capturing Moments</h1>
+        <h1 className="hero-title">Welcome to Pixora</h1>
         <p className="hero-subtitle">Professional Photography Portfolio</p>
         <Link to="/portfolio" className="cta-button">
-          View My Work
+          View Our Work
         </Link>
       </div>
     </section>
