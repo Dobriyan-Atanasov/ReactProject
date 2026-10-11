@@ -71,11 +71,8 @@ export default function AuthProvider({ children }) {
     }, [session, saveSession, clearSession])
 
     async function logout() {
-        try {
-            if (session) await signOut(session.accessToken)
-        } finally {
-            clearSession()
-        }
+        if (session) await signOut(session.accessToken)
+        clearSession()
     }
 
     return (

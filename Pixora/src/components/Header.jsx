@@ -6,17 +6,24 @@ export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
     const { user, loading, logout } = useAuth()
+    const [logoutError, setLogoutError] = useState('')
+    const [loggingOut, setLoggingOut] = useState(false)
     const navigate = useNavigate()
 
     async function handleLogout() {
+        if (loggingOut) return
+
+        setLoggingOut(true)
+        setLogoutError('')
+
         try {
             await logout()
             closeMenu()
             navigate('/')
         } catch (error) {
-            console.error('Logout request failed:', error)
-            closeMenu()
-            navigate('/')
+            setLogoutError('Please check your connection and try again.')
+        } finally {
+            setLoggingOut(false)
         }
     }
 
@@ -67,8 +74,9 @@ export default function Header() {
                                             type="button"
                                             className="logout-button"
                                             onClick={handleLogout}
+                                            disabled={loggingOut}
                                         >
-                                            Logout
+                                            {loggingOut ? 'Logging out…' : 'Logout'}
                                         </button>
                                     </li>
                                 </>
@@ -90,6 +98,22 @@ export default function Header() {
                         <span />
                     </button>
                 </nav>
+                {logoutError && (
+                    <div className="logout-notification" role="alert">
+                        <div>
+                            <strong>Logout unsuccessful</strong>
+                            <p>{logoutError}</p>
+                        </div>
+
+                        <button
+                            type="button"
+                            onClick={() => setLogoutError('')}
+                            aria-label="Dismiss notification"
+                        >
+                            ×
+                        </button>
+                    </div>
+                )}
             </header>
         </>
     );

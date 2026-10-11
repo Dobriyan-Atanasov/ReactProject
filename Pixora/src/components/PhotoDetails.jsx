@@ -7,6 +7,7 @@ import {
     getPhotoAuthor,
 } from '../lib/photoApi'
 import { useAuth } from '../context/useAuth'
+import PhotoLikes from './PhotoLikes'
 
 export default function PhotoDetails() {
     const { id } = useParams()
@@ -177,6 +178,8 @@ export default function PhotoDetails() {
                             )}
                         </>
                     )}
+
+                    <PhotoLikes key={photo.id} photoId={photo.id} />
 
                     {isOwner && (
                         <div className="photo-actions">
