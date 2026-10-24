@@ -87,7 +87,7 @@ The application uses `/ReactProject/` as its deployment base path and hash routi
 Guests can:
 
 - Open Home, About, Services and Contact.
-- Browse all photographs in Portfolio.
+- Browse all photographs in Portfolio, where you can add Photos only if logged in.
 - Open individual photo details.
 - View photo information, author information and like counts.
 - Register or log in.
